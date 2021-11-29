@@ -42,11 +42,11 @@ if __name__ == '__main__':
     import sys
 
     for code in sys.argv[1:]:
-	    cleaned = code.strip().replace(" ", "")
+	cleaned = code.strip().replace(" ", "")
         pronto = bytearray.fromhex(cleaned)
         pulses = pronto2lirc(pronto)
         packet = lirc2broadlink(pulses)
 
-	    print(binascii.b2a_base64(packet))
+	print(binascii.b2a_base64(packet))
         #print binascii.hexlify(packet)
 
