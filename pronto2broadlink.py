@@ -38,13 +38,15 @@ def lirc2broadlink(pulses):
 
     return packet
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
     import sys
 
-    file = open("pronto.txt", "r")
-    code = file.read().strip().replace(" ", "")
-    pronto = bytearray.fromhex(code)
-    pulses = pronto2lirc(pronto)
-    packet = lirc2broadlink(pulses)
+    for code in sys.argv[1:]:
+	    cleaned = code.strip().replace(" ", "")
+        pronto = bytearray.fromhex(cleaned)
+        pulses = pronto2lirc(pronto)
+        packet = lirc2broadlink(pulses)
 
-    print(binascii.b2a_base64(packet))
+	    print(binascii.b2a_base64(packet))
+        #print binascii.hexlify(packet)
+
